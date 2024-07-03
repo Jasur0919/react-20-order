@@ -159,10 +159,10 @@ const Index = () => {
                       <Typography>30 daqiqa</Typography>
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      <IconButton onClick={() => editItem(row)} color="warning">
+                      <IconButton onClick={() => editItem(row)} color="" sx={{color: "blue"}}>
                         <EditIcon />
                       </IconButton>
-                      <IconButton onClick={() => deleteItem(row.id)} color="error">
+                      <IconButton onClick={() => deleteItem(row.id)} color="" sx={{color: "red"}}>
                         <DeleteIcon />
                       </IconButton>
                     </StyledTableCell>
