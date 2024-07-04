@@ -321,9 +321,9 @@ const Index = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>T/R</StyledTableCell>
-              <StyledTableCell>Service Name</StyledTableCell>
-              <StyledTableCell align="center">Service price</StyledTableCell>
-              <StyledTableCell align="center">Kutish vaqti</StyledTableCell>
+              <StyledTableCell>Order Name</StyledTableCell>
+              <StyledTableCell align="center">Order price</StyledTableCell>
+              <StyledTableCell align="center">Waiting time</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -337,9 +337,9 @@ const Index = () => {
      data-aos-duration="1000">
                 <TableRow>
                   <StyledTableCell>T/R</StyledTableCell>
-                  <StyledTableCell>Xizmat nomi</StyledTableCell>
-                  <StyledTableCell align="center">Xizmat narxi</StyledTableCell>
-                  <StyledTableCell align="center">Kutish vaqti</StyledTableCell>
+                  <StyledTableCell>Order name</StyledTableCell>
+                  <StyledTableCell align="center">Order price</StyledTableCell>
+                  <StyledTableCell align="center">Waiting name</StyledTableCell>
                   <StyledTableCell align="center">Action</StyledTableCell>
                 </TableRow>
               </TableHead>
