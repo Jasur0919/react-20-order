@@ -45,7 +45,7 @@ export default function AddService() {
   return (
     <div>
       <Button onClick={handleOpen} variant="contained">
-        Add Service
+        Add Order
       </Button>
       <Modal
         open={open}
@@ -69,7 +69,7 @@ export default function AddService() {
                     name="name"
                     type="text"
                     as={TextField}
-                    label="Service Name"
+                    label="Order Name"
                     fullWidth
                     margin="normal"
                     variant="outlined"
@@ -85,7 +85,7 @@ export default function AddService() {
                     name="price"
                     type="number"
                     as={TextField}
-                    label="Service Price"
+                    label="Order Price"
                     fullWidth
                     margin="normal"
                     variant="outlined"

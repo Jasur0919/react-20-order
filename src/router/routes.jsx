@@ -4,17 +4,17 @@ import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices
 const routes = [
     {
         path: "/",
-        content: "Asosiy",
+        content: "Home",
         icon: <AddchartIcon/>
     },
     {
         path: "/orders",
-        content: "Buyurtmalar",
+        content: "order",
         icon: <DryCleaningIcon/>
     },
     {
         path: "/xizmatlar",
-        content: "Xizmatlar",
+        content: "Service",
         icon: <MiscellaneousServicesIcon/>
     },
 ]

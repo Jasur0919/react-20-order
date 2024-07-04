@@ -119,8 +119,8 @@ const Index = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>T/R</StyledTableCell>
-              <StyledTableCell>Xizmat nomi</StyledTableCell>
-              <StyledTableCell align="center">Xizmat narxi</StyledTableCell>
+              <StyledTableCell>Service Name</StyledTableCell>
+              <StyledTableCell align="center">Service price</StyledTableCell>
               <StyledTableCell align="center">Kutish vaqti</StyledTableCell>
               <StyledTableCell align="center">Action</StyledTableCell>
             </TableRow>
