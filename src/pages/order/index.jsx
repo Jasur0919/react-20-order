@@ -9,7 +9,6 @@ const Index = () => {
   const getData =async()=>{
     try{
       const response = await order.get()
-      console.log(response);
       if(response.status === 200 && response?.data?.orders_list){
         setData(response?.data?.orders_list)
       }
