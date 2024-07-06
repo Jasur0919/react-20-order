@@ -26,7 +26,7 @@ const Index = () => {
       <div className="flex justify-end">
       <Button variant="contained" type="primary" onClick={()=>setOpen(true)}>ADD</Button>
       </div>
-      {/* <OrderTable  data={data} /> */}
+      <OrderTable  data={data} />
     </div>
     </>
   )

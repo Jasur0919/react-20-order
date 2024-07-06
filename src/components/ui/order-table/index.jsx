@@ -10,6 +10,10 @@ import Paper from '@mui/material/Paper';
 import {service} from "@service"
 import {Service} from '@modal'
 import { useState } from 'react';
+import { FaRegTrashCan } from "react-icons/fa6";
+import { MdEdit } from "react-icons/md";
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "rgba(35, 137, 218, 1)",
@@ -58,6 +62,8 @@ export default function CustomizedTables({data}) {
             <StyledTableCell align="center">Client phone</StyledTableCell>
             <StyledTableCell align="center">Service name</StyledTableCell>
             <StyledTableCell align="center">Service price</StyledTableCell>
+            <StyledTableCell align="center">Amount</StyledTableCell>
+            <StyledTableCell align="center">Status</StyledTableCell>
             <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -65,11 +71,15 @@ export default function CustomizedTables({data}) {
           {data.map((item,index) => (
             <StyledTableRow key={index}>
               <StyledTableCell align="center">{index + 1}</StyledTableCell>
-              <StyledTableCell align="center">{item.name}</StyledTableCell>
-              <StyledTableCell align="center">{item.price}</StyledTableCell>
-              <StyledTableCell align="center">
-                <button onClick={()=>editItem(item)}>edit</button>
-                <button onClick={()=>deleteItem(item.id)}>delete</button>
+              <StyledTableCell align="center">{item.client_name}</StyledTableCell>
+              <StyledTableCell align="center">{item.client_phone_number}</StyledTableCell>
+              <StyledTableCell align="center">{item.service_name}</StyledTableCell>
+              <StyledTableCell align="center">{item.service_price}</StyledTableCell>
+              <StyledTableCell align="center">{item.amount}</StyledTableCell>
+              <StyledTableCell align="center">{item.status}</StyledTableCell>
+              <StyledTableCell align="center" >
+                <button onClick={()=>editItem(item)}><MdEdit  style={{color: "blue", fontSize: "20px"}}/> </button>
+                <button onClick={()=>deleteItem(item.id)}><FaRegTrashCan  style={{color: "red", fontSize: "20px", marginLeft:"10px"}}/></button>
               </StyledTableCell>
             </StyledTableRow>
           ))}
