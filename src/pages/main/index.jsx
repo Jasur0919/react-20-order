@@ -1,18 +1,11 @@
-import { useNavigate } from "react-router-dom"
-import ResponsiveDrawer from "../../components/loyout"
-import { useEffect } from "react"
-const Main = () => {
-  const navigate = useNavigate()
-  useEffect(()=> {
-    if (!localStorage.getItem("access_token")) {
-      navigate("/sign-in")
-    }
-  },[])
+import {MainLayout} from '@ui'
+const Index = () => {
   return (
     <div>
-      <ResponsiveDrawer/>
+      <h1>Main</h1>
+      <MainLayout/>
     </div>
   )
 }
 
-export default Main
+export default Index

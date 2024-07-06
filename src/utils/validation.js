@@ -1,47 +1,29 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
-export const signUpValidationSchema = Yup.object().shape({
-    full_name: Yup.string().required("Majburiy"),
-    email: Yup.string().email("Yaroqsiz elektron pochta manzili").required("Majburiy"),
-    password: Yup.string()
-                .min(6, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak')
-                .matches(/[A-Z]/, 'Parol kamida bitta katta harfdan iborat bo\'lishi kerak')
-                .matches(/[a-z]/, 'Parol kamida bitta kichik harfdan iborat bo\'lishi kerak')
-                .matches(/[0-9]/, 'Parolda kamida bitta raqam bo\'lishi kerak')
-                .required('Majburiy'),
-    phone_number: Yup.string().min(19, "Invalid phone number").required("Phone number is required"),
-})
+// =============  AUTH ============= 
 
 export const signInValidationSchema = Yup.object().shape({
-    email: Yup.string().email("Yaroqsiz elektron pochta manzili").required("Majburiy"),
-    password: Yup.string()
-                .min(6, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak')
-                .matches(/[A-Z]/, 'Parol kamida bitta katta harfdan iborat bo\'lishi kerak')
-                .matches(/[a-z]/, 'Parol kamida bitta kichik harfdan iborat bo\'lishi kerak')
-                .matches(/[0-9]/, 'Parolda kamida bitta raqam bo\'lishi kerak')
-                .required('Majburiy'),
-})
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/, 'Password must be at least 6 characters and contain at least one uppercase and one lowercase letter').required('Password is required'),
+});
 
-export const verifyPassValidationSchema = Yup.object().shape({
-    email: Yup.string().email("Yaroqsiz elektron pochta manzili").required("Majburiy"),
-})
+export const signUpValidationSchema = Yup.object().shape({
+    full_name: Yup.string().required('Full name is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/, 'Password must be at least 6 characters and contain at least one uppercase and one lowercase letter').required('Password is required'),
+    phone_number: Yup.string().min(19,"Invalid phone number").required('Phone is required'),
+});
 
-export const updatePassValidationSchema = Yup.object().shape({
-    new_password: Yup.string()
-    .min(6, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak')
-    .matches(/[A-Z]/, 'Parol kamida bitta katta harfdan iborat bo\'lishi kerak')
-    .matches(/[a-z]/, 'Parol kamida bitta kichik harfdan iborat bo\'lishi kerak')
-    .matches(/[0-9]/, 'Parolda kamida bitta raqam bo\'lishi kerak')
-    .required('Majburiy'),
-    code: Yup.string().required().trim(),
-})
+// =============  SERBVICE ===========
+export const serviceValidationSchema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    price: Yup.string().required('Price is required'),
+});
 
-export const ServiceValidationSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, "Kamida ikkita so'zdan iborat bo'lishi shart")
-      .max(30)
-      .required("Majburiy"),
-    price: Yup.number().required("Majburiy").min(0, "Minimal narxi 0"),
-  });
-
-  
+// =============  ORDER ===========
+export const orderValidationSchema = Yup.object().shape({
+    client_full_name: Yup.string().required('Full name is required'),
+    client_phone_number: Yup.string().required('Phone is required'),
+    amount: Yup.string().required('Amount is required'),
+    service_id: Yup.string().required('Service Id is required'),
+});

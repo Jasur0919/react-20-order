@@ -1,90 +1,64 @@
-import {
-  Button,
-  IconButton,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Notification } from "../../utils/index";
-import { auth } from "../../service/";
-import { VerifyModal } from "../../components/modal";
+import { Button, IconButton, InputAdornment } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useMask } from "@react-input/mask";
-import {signUpValidationSchema} from "../../utils/validation"
-
+import { useState } from 'react';
+import {auth} from "@service"
+import { SignUpModal } from '@modal';
+import {signUpValidationSchema} from "@validation"
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 const Index = () => {
-  const initialValues = {
-    full_name: "",
-    email: "",
-    password: "",
-    phone_number: "",
-  };
+  const [open, setOpen] = useState(false);
+  const [showPassword,setShowPassword] = useState(false)
   const inputRef = useMask({
     mask: "+998 (__) ___-__-__",
     replacement: { _: /\d/ },
   });
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const handleSubmit = async (values) => {
-    try {
-      const phone_number = values.phone_number.replace(/\D/g, "");
-      const payload = { ...values, phone_number: `+${phone_number}` };
-      const response = await auth.sign_up(payload);
-      response.status === 200 && setOpen(true);
-      if (response.status === 200) {
-        Notification({
-          title: response.data.message,
-          type: "success",
-        });
-        setOpen(true);
-        setEmail(values.email);
+  const initialValues = {
+    full_name: "",
+    email: "",
+    password: "",
+    phone_number: ""
+  }
+  // 93013e6f-c828-4c56-8cea-94cebdd9e17c
+  const handleSubmit = async(values)=>{
+    localStorage.setItem("email", values.email)
+    const phone_number = values.phone_number.replace(/\D/g, "");
+    const payload = { ...values, phone_number: `+${phone_number}` };
+    try{
+      const response = await auth.sign_up(payload)
+      if(response.status === 200){
+        setOpen(true)
       }
-    } catch (error) {
-      console.error(error);
-      Notification({
-        title: "Sign Up Failed",
-        type: "error",
-      });
+    }catch(error){
+      console.log(error)
     }
-  };
-  useEffect(() => {
-    if (localStorage.getItem("access_token")) {
-      navigate("/");
-    }
-  }, []);
-
-  return (
-    <>
-      <VerifyModal
-        open={open}
-        setOpen={setOpen}
-        email={email}
-        closeModal={() => setOpen(false)}
-      />
-      <div className="h-screen flex-col flex items-center justify-center gap-5 p-5">
-        <h1 className="text-[35px] font-normal sm:text-[36px] md:text-[56px]">
-          Register
-        </h1>
-        <div className="max-w-[600px]">
-          <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={signUpValidationSchema}>
+  }
+    return (
+      <>
+      <SignUpModal open={open} handleClose={()=>setOpen(false)}/>
+      <div className='w-full h-screen flex items-center justify-center'>
+        <div className="w-full sm:w-[600px] p-5">
+        <h1 className='text-center my-6 text-[50px]'>Register</h1>
+        <Formik
+            initialValues={initialValues}
+            validationSchema={signUpValidationSchema}
+            onSubmit={handleSubmit}
+          >
             {({ isSubmitting }) => (
               <Form>
                 <Field
                   name="full_name"
                   type="text"
                   as={TextField}
-                  label="Full Name"
+                  label="Ismingizni kiriting"
                   fullWidth
                   margin="normal"
                   variant="outlined"
                   helperText={
                     <ErrorMessage
                       name="full_name"
-                      component="span"
+                      component="p"
                       className="text-[red] text-[15px]"
                     />
                   }
@@ -93,15 +67,15 @@ const Index = () => {
                   name="phone_number"
                   type="tel"
                   as={TextField}
-                  label="Phone number"
+                  label="Telefon raqamingiz"
                   fullWidth
                   margin="normal"
-                  inputRef={inputRef}
                   variant="outlined"
+                  inputRef={inputRef}
                   helperText={
                     <ErrorMessage
                       name="phone_number"
-                      component="span"
+                      component="p"
                       className="text-[red] text-[15px]"
                     />
                   }
@@ -110,21 +84,21 @@ const Index = () => {
                   name="email"
                   type="email"
                   as={TextField}
-                  label="Email address"
+                  label="Email"
                   fullWidth
                   margin="normal"
                   variant="outlined"
                   helperText={
                     <ErrorMessage
                       name="email"
-                      component="span"
+                      component="p"
                       className="text-[red] text-[15px]"
                     />
                   }
                 />
                 <Field
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   as={TextField}
                   label="Password"
                   fullWidth
@@ -133,17 +107,14 @@ const Index = () => {
                   helperText={
                     <ErrorMessage
                       name="password"
-                      component="span"
+                      component="p"
                       className="text-[red] text-[15px]"
                     />
                   }
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <IconButton
-                          onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                        >
+                        <IconButton onClick={()=>setShowPassword(!showPassword)} edge="end">
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
@@ -154,25 +125,19 @@ const Index = () => {
                   type="submit"
                   variant="contained"
                   color="primary"
-                  fullWidth
                   disabled={isSubmitting}
-                  sx={{ marginBottom: "8px" }}
+                  fullWidth
                 >
-                  {isSubmitting ? "Yuborilmoqda..." : "Sign Up"}
+                  {isSubmitting ? "Submitting" : "Submit"}
                 </Button>
-                <span
-                  onClick={() => navigate("/sign-in")}
-                  className=" text-blue-300 cursor-pointer hover:text-blue-500"
-                >
-                  Already have an account?
-                </span>
               </Form>
             )}
           </Formik>
         </div>
       </div>
-    </>
-  );
-};
-
-export default Index;
+      </>
+    )
+  }
+  
+  export default Index
+  

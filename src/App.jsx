@@ -1,12 +1,9 @@
+
 import { Outlet } from "react-router-dom"
-import { ToastContainer } from "react-toastify"
-
-function App() {
-
+const App = () => {
   return (
     <>
-    <ToastContainer />
-    <Outlet/>
+      <Outlet/>
     </>
   )
 }

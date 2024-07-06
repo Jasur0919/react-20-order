@@ -1,21 +1,15 @@
-import AddchartIcon from '@mui/icons-material/Addchart';
-import DryCleaningIcon from '@mui/icons-material/DryCleaning';
-import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 const routes = [
     {
-        path: "/",
-        content: "Home",
-        icon: <AddchartIcon/>
+        path: "/main",
+        content: "Dashboard",
     },
     {
-        path: "/orders",
-        content: "order",
-        icon: <DryCleaningIcon/>
+        path: "/main/order",
+        content: "Order",
     },
     {
-        path: "/xizmatlar",
+        path: "/main/service",
         content: "Service",
-        icon: <MiscellaneousServicesIcon/>
     },
 ]
 

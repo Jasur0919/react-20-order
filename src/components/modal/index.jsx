@@ -1,4 +1,4 @@
-import LogOutModal from "./logout"
-import VerifyModal from "./verify"
-
-export { LogOutModal, VerifyModal }
+import SignUpModal from './sign-up-modal'
+import Service from './service'
+import Order from './order'
+export {SignUpModal,Service, Order}
